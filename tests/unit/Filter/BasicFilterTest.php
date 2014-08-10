@@ -26,12 +26,14 @@ use Intervention\Image\ImageManagerStatic as Image;
 class BasicFilterTest extends AbstractFilterTest
 {
     /**
-     * @covers ::getFilters
+     * @covers ::addFilter
      */
     public function testFilter()
     {
         $filter = new BasicFilter;
 
-        $this->assertEquals([], $filter->getFilters());
+        $filter->addFilter('resize');
+
+        $this->assertEquals(['resize' => []], $filter->getData());
     }
 }

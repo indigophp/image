@@ -34,6 +34,6 @@ class CollectionFilterTest extends AbstractFilterTest
         $filter = \Mockery::mock('Intervention\\Image\\Filters\\FilterInterface');
 
         $this->assertSame($collection, $collection->addFilter($filter));
-        $this->assertEquals([$filter], $collection->getFilters());
+        $this->assertEquals([$filter], $collection->getData());
     }
 }

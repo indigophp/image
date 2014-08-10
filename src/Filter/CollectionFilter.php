@@ -21,7 +21,7 @@ use Intervention\Image\Filters\FilterInterface;
  *
  * @author Márk Sági-Kazár <mark.sagikazar@gmail.com>
  */
-class CollectionFilter extends BasicFilter
+class CollectionFilter extends AbstractFilter
 {
     /**
      * Adds a new filter

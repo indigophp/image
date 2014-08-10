@@ -23,13 +23,18 @@ use Intervention\Image\Image;
 class BasicFilter extends AbstractFilter
 {
     /**
-     * Alias to getData
+     * Adds a new filter
      *
-     * {@inheritdoc}
+     * @param string $filter
+     * @param []     $data
+     *
+     * @return this
      */
-    public function getFilters()
+    public function addFilter($filter, array $data = [])
     {
-        return $this->getData();
+        $this->data[$filter] = $data;
+
+        return $this;
     }
 
     /**
