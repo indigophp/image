@@ -20,20 +20,20 @@ use Codeception\TestCase\Test;
  */
 abstract class AbstractFilterTest extends Test
 {
-	/**
-	 * Filter object
-	 *
-	 * @var Intervention\Image\Filters\FilterInterface
-	 */
-	protected $filter;
+    /**
+     * Filter object
+     *
+     * @var Intervention\Image\Filters\FilterInterface
+     */
+    protected $filter;
 
-	/**
-	 * Removes any file left
-	 */
-	public function _after()
-	{
-		if (is_file(__DIR__.'/../../_output/image.png')) {
-			unlink(__DIR__.'/../../_output/image.png');
-		}
-	}
+    /**
+     * Removes any file left
+     */
+    public function _after()
+    {
+        if (is_file(__DIR__.'/../../_output/image.png')) {
+            unlink(__DIR__.'/../../_output/image.png');
+        }
+    }
 }

@@ -25,10 +25,10 @@ use Intervention\Image\ImageManagerStatic as Image;
  */
 class CollectionFilterTest extends BasicFilterTest
 {
-	public function _before()
-	{
-		parent::_before();
+    public function _before()
+    {
+        parent::_before();
 
-		$this->filter = new CollectionFilter(array($this->filter));
-	}
+        $this->filter = new CollectionFilter([$this->filter]);
+    }
 }

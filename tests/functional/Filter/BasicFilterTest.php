@@ -25,36 +25,36 @@ use Intervention\Image\ImageManagerStatic as Image;
  */
 class BasicFilterTest extends AbstractFilterTest
 {
-	public function _before()
-	{
-		$filters = [
-			'resize' => [
-				'width'  => 10,
-				'height' => 10,
-				'callback' => function($size) {
-					$size->aspectRatio();
-				},
-			],
-			'backup',
-		];
+    public function _before()
+    {
+        $filters = [
+            'resize' => [
+                'width'  => 10,
+                'height' => 10,
+                'callback' => function($size) {
+                    $size->aspectRatio();
+                },
+            ],
+            'backup',
+        ];
 
-		$this->filter = new BasicFilter($filters);
-	}
+        $this->filter = new BasicFilter($filters);
+    }
 
-	/**
-	 * @covers ::applyFilter
-	 */
-	public function testFilter()
-	{
-		$image = Image::make(__DIR__.'/../../../resources/10x20.png');
+    /**
+     * @covers ::applyFilter
+     */
+    public function testFilter()
+    {
+        $image = Image::make(__DIR__.'/../../../resources/10x20.png');
 
-		$image->filter($this->filter);
+        $image->filter($this->filter);
 
-		$actual = __DIR__.'/../../_output/image.png';
-		$expected = __DIR__.'/../../../resources/5x10.png';
+        $actual = __DIR__.'/../../_output/image.png';
+        $expected = __DIR__.'/../../../resources/5x10.png';
 
-		$image->save($actual);
+        $image->save($actual);
 
-		$this->assertFileEquals($expected, $actual);
-	}
+        $this->assertFileEquals($expected, $actual);
+    }
 }
