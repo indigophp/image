@@ -55,6 +55,7 @@ class BasicFilterTest extends AbstractFilterTest
 
         $image->save($actual);
 
-        $this->assertFileEquals($expected, $actual);
+        $this->assertEquals(5, $image->width());
+        $this->assertEquals(10, $image->height());
     }
 }
