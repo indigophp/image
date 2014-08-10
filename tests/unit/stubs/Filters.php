@@ -35,7 +35,7 @@ class DummyFilter extends AbstractFilter
  *
  * @author Márk Sági-Kazár <mark.sagikazar@gmail.com>
  */
-class DummyQueueFilter extends QueueFilter
+class DummyQueueFilter extends AbstractQueueFilter
 {
     public function applyFilter(Image $image)
     {

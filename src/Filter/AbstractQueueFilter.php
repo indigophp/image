@@ -21,7 +21,7 @@ use Intervention\Image\Filters\FilterInterface;
  *
  * @author Márk Sági-Kazár <mark.sagikazar@gmail.com>
  */
-abstract class QueueFilter implements FilterInterface
+abstract class AbstractQueueFilter implements FilterInterface
 {
     /**
      * Manager object
