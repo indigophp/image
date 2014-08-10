@@ -14,6 +14,23 @@ namespace Indigo\Image\Filter;
 use Intervention\Image\Image;
 
 /**
+ * Dummy Filter
+ *
+ * @author Márk Sági-Kazár <mark.sagikazar@gmail.com>
+ */
+class DummyFilter extends AbstractFilter
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function applyFilter(Image $image)
+    {
+        return $image;
+    }
+}
+
+
+/**
  * Dummy Queue Filter
  *
  * @author Márk Sági-Kazár <mark.sagikazar@gmail.com>
