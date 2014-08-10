@@ -22,46 +22,60 @@ use Intervention\Image\Image;
  */
 class FilterJob implements JobInterface
 {
-	/**
-	 * {@inheritdoc}
-	 */
-	public function execute(ManagerInterface $manager)
-	{
-		$payload = $manager->getPayload();
+    /**
+     * {@inheritdoc}
+     */
+    public function execute(ManagerInterface $manager)
+    {
+        $payload = $manager->getPayload();
 
-		$data = $payload['data'];
+        $data = $payload['data'];
 
-		$class = $data['filter'];
+        $filter = $this->resolveFilter($manager);
 
-		// Instantiate Filter
-		if (is_subclass_of($class, 'Indigo\\Image\\Filter\\QueueFilter'))
-		{
-			$filter = new $class($manager);
-		}
-		elseif (isset($data['closure']))
-		{
-			$filter = $data['closure']($manager);
-		}
-		else
-		{
-			$filter = new $class;
-		}
+        $image = Image::make($data['path']);
 
-		$image = Image::make($data['path']);
+        $image->filter($filter);
 
-		$image->filter($filter);
+        $quality = isset($data['quality']) ? $data['quality'] : null;
+        $save = isset($data['save']) ? $data['save'] : $data['path'];
 
-		$quality = isset($data['quality']) ? $data['quality'] : null;
-		$save = isset($data['save']) ? $data['save'] : $data['path'];
+        $image->save($save, $quality);
+    }
 
-		$image->save($save, $quality);
-	}
+    /**
+     * Returns new filter instance
+     *
+     * @param ManagerInterface $manager
+     *
+     * @return FilterInterface
+     */
+    protected function resolveFilter(ManagerInterface $manager)
+    {
+        $payload = $manager->getPayload();
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function fail(ManagerInterface $manager, \Exception $e)
-	{
-		return true;
-	}
+        $data = $payload['data'];
+
+        $class = $data['filter'];
+
+        if (is_subclass_of($class, 'Indigo\\Image\\Filter\\AbstractQueueFilter')) {
+            return new $class($manager);
+        } elseif (is_subclass_of($class, 'Indigo\\Queue\\Job\\FactoryInterface')) {
+            return $class::factory($manager);
+        } elseif (isset($data['closure'])) {
+            return $data['closure']($manager);
+        } elseif (is_subclass_of($class, 'Indigo\\Image\\Filter\\AbstractFilter')) {
+            return new $class($data);
+        }
+
+        return new $class;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function fail(ManagerInterface $manager, \Exception $e)
+    {
+        return true;
+    }
 }
