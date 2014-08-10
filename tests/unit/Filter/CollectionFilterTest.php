@@ -25,27 +25,15 @@ use Intervention\Image\ImageManagerStatic as Image;
  */
 class CollectionFilterTest extends AbstractFilterTest
 {
-	/**
-	 * @covers ::__construct
-	 * @covers ::getFilters
-	 */
-	public function testConstruct()
-	{
-		$filter = new CollectionFilter;
+    /**
+     * @covers ::addFilter
+     */
+    public function testFilter()
+    {
+        $collection = new CollectionFilter;
+        $filter = \Mockery::mock('Intervention\\Image\\Filters\\FilterInterface');
 
-		$this->assertEquals([], $filter->getFilters());
-	}
-
-	/**
-	 * @covers ::addFilter
-	 * @covers ::getFilters
-	 */
-	public function testFilter()
-	{
-		$collection = new CollectionFilter;
-		$filter = \Mockery::mock('Intervention\\Image\\Filters\\FilterInterface');
-
-		$this->assertSame($collection, $collection->addFilter($filter));
-		$this->assertEquals([$filter], $collection->getFilters());
-	}
+        $this->assertSame($collection, $collection->addFilter($filter));
+        $this->assertEquals([$filter], $collection->getFilters());
+    }
 }

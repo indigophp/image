@@ -12,7 +12,6 @@
 namespace Indigo\Image\Filter;
 
 use Intervention\Image\Image;
-use Intervention\Image\Filters\FilterInterface;
 
 /**
  * Basic Filter
@@ -21,33 +20,16 @@ use Intervention\Image\Filters\FilterInterface;
  *
  * @author Márk Sági-Kazár <mark.sagikazar@gmail.com>
  */
-class BasicFilter implements FilterInterface
+class BasicFilter extends AbstractFilter
 {
     /**
-     * Filter definition
+     * Alias to getData
      *
-     * @var []
-     */
-    protected $filters = [];
-
-    /**
-     * Creates a new Basic Filter
-     *
-     * @param [] $filters
-     */
-    public function __construct(array $filters)
-    {
-        $this->filters = $filters;
-    }
-
-    /**
-     * Returns the filter array
-     *
-     * @return []
+     * {@inheritdoc}
      */
     public function getFilters()
     {
-        return $this->filters;
+        return $this->getData();
     }
 
     /**
@@ -55,7 +37,7 @@ class BasicFilter implements FilterInterface
      */
     public function applyFilter(Image $image)
     {
-        foreach ($this->filters as $filter => $data) {
+        foreach ($this->data as $filter => $data) {
             if (is_int($filter)) {
                 $filter = $data;
                 $data = [];

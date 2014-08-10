@@ -21,35 +21,8 @@ use Intervention\Image\Filters\FilterInterface;
  *
  * @author Márk Sági-Kazár <mark.sagikazar@gmail.com>
  */
-class CollectionFilter implements FilterInterface
+class CollectionFilter extends BasicFilter
 {
-    /**
-     * Filter definition
-     *
-     * @var FilterInterface[]
-     */
-    protected $filters = [];
-
-    /**
-     * Creates a new Collection Filter
-     *
-     * @param FilterInterface[] $filters
-     */
-    public function __construct(array $filters = [])
-    {
-        $this->filters = $filters;
-    }
-
-    /**
-     * Returns the filter array
-     *
-     * @return FilterInterface[]
-     */
-    public function getFilters()
-    {
-        return $this->filters;
-    }
-
     /**
      * Adds a new filter
      *
@@ -59,7 +32,7 @@ class CollectionFilter implements FilterInterface
      */
     public function addFilter(FilterInterface $filter)
     {
-        $this->filters[] = $filter;
+        $this->data[] = $filter;
 
         return $this;
     }
@@ -69,7 +42,7 @@ class CollectionFilter implements FilterInterface
      */
     public function applyFilter(Image $image)
     {
-        foreach ($this->filters as $filter) {
+        foreach ($this->data as $filter) {
             $image->filter($filter);
         }
 

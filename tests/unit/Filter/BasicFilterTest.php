@@ -25,16 +25,13 @@ use Intervention\Image\ImageManagerStatic as Image;
  */
 class BasicFilterTest extends AbstractFilterTest
 {
-	/**
-	 * @covers ::__construct
-	 * @covers ::getFilters
-	 */
-	public function testConstruct()
-	{
-		$filters = [];
+    /**
+     * @covers ::getFilters
+     */
+    public function testFilter()
+    {
+        $filter = new BasicFilter;
 
-		$filter = new BasicFilter($filters);
-
-		$this->assertEquals($filters, $filter->getFilters());
-	}
+        $this->assertEquals([], $filter->getFilters());
+    }
 }

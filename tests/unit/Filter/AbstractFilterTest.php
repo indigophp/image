@@ -20,10 +20,10 @@ use Codeception\TestCase\Test;
  */
 abstract class AbstractFilterTest extends Test
 {
-	/**
-	 * Filter object
-	 *
-	 * @var Intervention\Image\Filters\FilterInterface
-	 */
-	protected $filter;
+    /**
+     * Filter object
+     *
+     * @var Intervention\Image\Filters\FilterInterface
+     */
+    protected $filter;
 }
