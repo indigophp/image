@@ -18,7 +18,7 @@ use Indigo\Image\Filter\DummyQueueFilter;
  *
  * @author Márk Sági-Kazár <mark.sagikazar@gmail.com>
  *
- * @coversDefaultClass Indigo\Image\Filter\QueueFilter
+ * @coversDefaultClass Indigo\Image\Filter\AbstractQueueFilter
  */
 class QueueFilterTest extends AbstractFilterTest
 {
