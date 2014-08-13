@@ -4,6 +4,7 @@
 [![Latest Stable Version](https://poser.pugx.org/indigophp/image/v/stable.png)](https://packagist.org/packages/indigophp/image)
 [![Total Downloads](https://poser.pugx.org/indigophp/image/downloads.png)](https://packagist.org/packages/indigophp/image)
 [![License](https://poser.pugx.org/indigophp/image/license.png)](https://packagist.org/packages/indigophp/image)
+[![Dependency Status](http://www.versioneye.com/user/projects/53ebd4c413bb065490000007/badge.svg?style=flat)](http://www.versioneye.com/user/projects/53ebd4c413bb065490000007)
 
 **This package contains basic image manipulation classes using other indigo resources.**
 
